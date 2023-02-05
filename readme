@@ -1,0 +1,15 @@
+>> node.js install >> version 16.16.0
+>> check node -v
+>> check npm -v
+
+>> open terminal on project directory - run 
+>> npm install
+>> npm run start or npm run start-nodemon (check details on package.json)
+
+>> on browser, call - http://localhost:7800/login
+
+
+For developing my website, I choose html,CSS,JavaScript,jQuery,Bootstrap,Node.js and MySQL.
+These are helping for web design and data storing. they help to become more comfortable webiste. 
+
+Node.js is a popular scripting langusage that built on chrome engine v8. Node.js becomes widely used language because it can give service for both front end and backend.

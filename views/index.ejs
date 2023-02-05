@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Student Profile Registration</title>
+		
+		
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="../node_modules/bootstrap//dist//css/bootstrap.min.css"> -->
+		
+		<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	</head>
+	<style>
+		
+	</style>
+	
+       <!-- <script>
+
+	   </script>-->
+	
+	<body>
+		<!--
+	Alert Modal -->
+	<div class="modal fade alertModal" style="z-index: 2000;" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered " role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+				<span class="text-danger">Alert!</span>
+			</div>
+			<div class="modal-body text-center alertModalBody">
+			 
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-primary alertModal_Comfirm ">Ok</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+		<div class="container" >
+			<!-- Page Content-->
+			<div class="mt-4 me-4 p-4 bg-light">
+				<style>
+					h2 {
+					  color: rgb(55, 40, 152);
+					  text-shadow: 1px 1px 2px #2b19a2;
+					}
+					
+					</style>
+					<h2 class="text-center "  >Student Profile Application</h2>
+				
+				</br>
+				
+			</div>
+		
+			<!-- Navbar -->
+			
+				<nav class="navbar navbar-expand-sm navbar-light bg-light">
+					<div class="container-fluid text-black">
+					  <a class="navbar-brand" href="/admin/welcome">Home</a>
+					  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+						<span class="navbar-toggler-icon"></span>
+					  </button>
+					  <div class="collapse navbar-collapse" id="mynavbar">
+						<ul class="navbar-nav me-auto">
+						  <li class="nav-item">
+							<a class="nav-link" href="/admin/sixthyear_list">Sixth Year</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" href="/admin/fifthyear_list">Fifth Year</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" href="/admin/fourthyear_list">Fourth Year</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" href="/admin/thirdyear_list">Third Year</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" href="/admin/secondyear_list">Second Year</a>
+						  </li>
+						</ul>
+					  </div>
+						
+						<div class="d-flex ">
+							<a href="/admin/logout" class="btn btn-primary m-2">Logout</a>
+						
+						</div>
+					</div>
+				</nav>
+			 
+            <!-- /Navbar -->
+			
+		    
+			<div class="content">
+				<% if (typeof bodypage !== 'undefined') { %>
+					<%- include(bodypage) %>
+					<% } %>  
+			</div>
+
+			
+		</div><!-- /.main-container -->
+
+
+		<!-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script> -->
+		<!-- <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
+
+	<script type="text/javascript">
+		function myCustomAlert(text){
+			$('.alertModalBody').html('');
+			$('.alertModalBody').html(text);
+			
+			$('#alertModal').modal({
+				backdrop: 'static',
+				keyboard: false
+			});
+			$('.alertModal_Comfirm').click(function(){
+				$('#alertModal').modal('hide');
+			
+				
+			}); 
+		}
+	</script>
+	
+	</body>
+</html>
+

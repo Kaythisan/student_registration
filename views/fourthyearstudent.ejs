@@ -1,0 +1,181 @@
+<div style="text-align: right;">
+    <button type="button" class="btn btn-primary" id="add_newstudent">Add New Student</button>
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="studentModalLabel">Student Profile Form </h5>
+          
+        </div>
+        <div class="modal-body studentFormBody">
+                       
+        </div>
+        <div class="modal-footer d-none">
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button trigger modal
+
+Button trigger modal -->
+
+  
+
+  <!-- student delete model start  -->
+<div class="modal" id="deletestudentModal"  role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" >Are you sure to delete this student?</h5>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-sm" data-dismiss="modal">
+                      <i class="icon-remove"></i>
+                      Cancel
+                  </button>
+
+                  <button class="btn btn-sm btn-danger" id="sureToDeletestudentBtn">
+                      <i class="icon-ok"></i>
+                      Delete
+                  </button>
+              </div>					
+          </div>
+        </div>
+      </div>	
+
+<div class="row maintable">
+    <table class="allstudenttable table table-striped table-bordered ">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Roll_No</th>
+                <th scope="col">Phonenumber</th>
+                <th scope="col">Father</th>
+                <th scope="col">Address</th>
+                <th scope="col">Gmail</th>
+                <th scope="col">Year</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    $(document).ready(()=>{
+
+        $('.allstudenttable').DataTable( {
+            "processing": true,
+            "serverSide": true,
+            "searching": true,	
+            "ordering": false,
+            "ajax": "/student/getfourthyearstudentlist",
+            "columns": [
+                { "data": "no" },
+                { "data": "name" },
+                { "data": "roll"},
+                { "data": "phonenumber"},
+                { "data": "father"},
+                { "data": "address"},
+                { "data": "gmail"},
+                { "data": "year"},
+				{ "data" : "action",
+                  "render": function ( data, type, row, meta ) {
+                    console.log(data)
+					var editpart = ' <a  class="btn btn-sm btn-primary EditstudentBtn" data-id='+data+' > <i class="fa fa-edit"></i> </a>';
+					var deletepart = ' <a  class="btn btn-sm btn-danger DeletestudentBtn" data-id='+data+'> <i class="fa fa-trash"></i> </a>';
+					
+					return editpart + deletepart ;
+                    }
+                }
+            ],
+            "columnDefs": [
+                {"className": "dt-center", "targets": "_all"}
+            ]
+        } );
+    });
+	$(document).on('click', "#savestudentBtn", function(e) {  
+        e.preventDefault();
+
+
+        if( $('#name').val() ){
+            var obj = {
+                student_id : $('#student_id').val(),
+                name : $('#name').val(),
+                roll_no : $('#roll').val(),
+                phonenumber : $('#phonenumber').val(),
+                father : $('#father').val(),
+                address : $('#address').val(),
+                gmail : $('#gmail').val()
+            };
+            $.post('/student/savestudent',obj,function(resp){
+                if(resp.status == 500){
+                    myCustomAlert(resp.text);
+                }else{
+                    $('#studentModal').modal('hide');
+                    $('#studentListTable').DataTable().ajax.reload();
+                }
+            });
+        }else{
+            myCustomAlert(" Student name field is required.");
+        }
+       
+    });
+            
+    $(document).on('click', "#add_newstudent", function(e) {  
+        $.post('/student/getstudentdatabyid',function(result){
+            if(result.status == 500){
+                myCustomAlert(result.text);
+            }else{
+                $('.studentFormBody').html('');
+                $('.studentFormBody').html(result);
+                $('#studentModal').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            }
+            
+        });
+    });
+  
+    
+    $(document).on('click', ".DeletestudentBtn", function(e) {  
+        e.preventDefault();
+        $('#deletestudentModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+        var student_id =$(this).attr('data-id');
+        $("#sureToDeletestudentBtn").click(function(){						
+            $.post("/student/deletestudent", {student_id: student_id}, function (data) {	
+                if(data.status == 200)
+                {
+                    $('#deletestudentModal').modal("hide");
+                    $('#studentListTable').DataTable().ajax.reload();
+                }else{
+                    myCustomAlert(data.text);
+                }							
+            });
+        });
+    }); 
+    function myCustomAlert(text){
+        $('.alertModalBody').html('');
+        $('.alertModalBody').html(text);
+        
+        $('#alertModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+        $('.alertModal_Comfirm').click(function(){
+            $('#alertModal').modal('hide');
+        
+            
+        }); 
+    }
+
+</script>
