@@ -44,10 +44,8 @@
 		  </div>
 		</div>
 	  </div>
-
-		<div class="container " >
-			<!-- Page Content-->
-			<div class="mt-4 me-4 p-4  ">
+	  	<div class="bg-light">
+			<div class=" me-2 pt-4  ">
 				<style>
 					h2 {
 					  color: rgb(55, 40, 152);
@@ -60,48 +58,53 @@
 				</br>
 				
 			</div>
-		
-			<!-- Navbar -->
+		<!-- Navbar -->
 			
-				<nav class="navbar navbar-expand-sm navbar-light bg-light">
-					<div class="container-fluid text-black">
-					  <div class="collapse navbar-collapse" id="mynavbar">
-						<ul class="navbar-nav me-auto">
-						  <li class="nav-item">
-							<a class="nav-link welcome" href="/admin/welcome">Home</a>
-						  </li>
-						  <li class="nav-item">
-							<a class="nav-link sixthyear_list" href="/admin/sixthyear_list">Sixth Year</a>
-						  </li>
-						  <li class="nav-item">
-							<a class="nav-link fifthyear_list" href="/admin/fifthyear_list">Fifth Year</a>
-						  </li>
-						  <li class="nav-item">
-							<a class="nav-link fourthyear_list" href="/admin/fourthyear_list">Fourth Year</a>
-						  </li>
-						  <li class="nav-item">
-							<a class="nav-link thirdyear_list" href="/admin/thirdyear_list">Third Year</a>
-						  </li>
-						  <li class="nav-item">
-							<a class="nav-link secondyear_list" href="/admin/secondyear_list">Second Year</a>
-						  </li>
-						  <li class="nav-item ">
-							<a type="button" class="btn nav-link" id="add_newstudent">Add New</a>
-						  </li>
-						</ul>
-					  </div>
-						
-						<div class="d-flex ">
-							<a href="/admin/logout" class="btn btn-primary m-2">Logout</a>
-						
-						</div>
-					</div>
-				</nav>
-			 
-            <!-- /Navbar -->
+		<nav class="navbar navbar-expand-sm navbar-light container">
+			<div class="container-fluid text-black">
+			  <div class="collapse navbar-collapse" id="mynavbar">
+				<ul class="navbar-nav me-auto">
+				  <li class="nav-item">
+					<a class="nav-link welcome" href="/admin/welcome">Home</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link sixthyear_list" href="/admin/sixthyear_list">Sixth Year</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link fifthyear_list" href="/admin/fifthyear_list">Fifth Year</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link fourthyear_list" href="/admin/fourthyear_list">Fourth Year</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link thirdyear_list" href="/admin/thirdyear_list">Third Year</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link secondyear_list" href="/admin/secondyear_list">Second Year</a>
+				  </li>
+				  <li class="nav-item ">
+					<a type="button" class="btn nav-link" id="add_newstudent">Add New</a>
+				  </li>
+				</ul>
+			  </div>
+				
+				<div class="d-flex ">
+					<a href="/admin/logout" class="btn btn-primary m-2">Logout</a>
+				
+				</div>
+			</div>
+		</nav>
+	 
+	<!-- /Navbar -->
+
+		</div>
+		<div class="container " >
+			<!-- Page Content-->
 			
 		    
 			<div class="content">
+				<br>
+			
 				<% if (typeof bodypage !== 'undefined') { %>
 					<%- include(bodypage) %>
 					<% } %>  
