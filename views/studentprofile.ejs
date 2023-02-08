@@ -21,8 +21,25 @@
         </div>
         <div class="form-group row myformgroup">
             <label for="roll"  class="col-3 studentlabel mytextright">Roll No:</label>
-            <div class="col-8">
-                <input type="text" class=" studentfield form-control" id="roll" value="<%= student?student.roll_no:'' %>" placeholder="Enter Roll No">
+            <div class="col-8 d-flex col">
+                <%
+                let code;
+                let code_number;
+                if(student && student.roll_no){
+                    let roll_no_arr = student.roll_no.split('-');
+                    code = roll_no_arr[0];
+                    code_number = roll_no_arr[1];
+                }
+                %>
+                <select  class=" form-select studentfield" id="code"   placeholder="Enter Code">
+                    <option value="IEC" <%= code && code == 'IEC' ?'selected':'' %> >IEC</option>
+                    <option value="IIEC" <%= code && code == 'IIEC' ?'selected':'' %>>IIEC</option>
+                    <option value="IIIEC" <%= code && code == 'IIIEC' ?'selected':'' %>>IIIEC</option>
+                    <option value="IVEC" <%= code && code == 'IVEC' ?'selected':'' %>>IVEC</option>
+                    <option value="VEC" <%= code && code == 'VEC' ?'selected':'' %>>VEC</option>
+                    <option value="VIEC" <%= code && code == 'VIEC' ?'selected':'' %>>VIEC</option>
+                  </select>
+                  <input type="text" class=" form-control studentfield " id="code_number" value="<%= code_number ? code_number :'' %>" placeholder="Enter Roll No">
             </div>   
         </div>
         <div class="form-group row myformgroup">
@@ -54,7 +71,7 @@
         <div class="form-group row myformgroup">
             <label for="year"  class="col-3 studentlabel mytextright">Year:</label>
             <div class="col-8">
-                <select  class="form-control studentfield" id="year"   placeholder="Enter Year">
+                <select  class="form-select studentfield" id="year"   placeholder="Enter Year">
                     <option value="First Year" <%= student && student.year == 'First Year' ?'selected':'' %> >First Year</option>
                     <option value="Second Year" <%= student && student.year == 'Second Year' ?'selected':'' %>>Second Year</option>
                     <option value="Third Year" <%= student && student.year == 'Third Year' ?'selected':'' %>>Third Year</option>

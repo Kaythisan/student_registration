@@ -114,12 +114,8 @@ Button trigger modal -->
                 no : $('#no').val()
             };
             $.post('/student/savestudent',obj,function(resp){
-                if(resp.status == 500){
-                    myCustomAlert(resp.text);
-                }else{
-                    $('#studentModal').modal('hide');
-                    $('#studentListTable').DataTable().ajax.reload();
-                }
+                $('#studentModal').modal('hide');
+                    $('.allstudenttable').DataTable().ajax.reload();
             });
         }else{
             myCustomAlert(" Student name field is required.");
@@ -154,13 +150,8 @@ Button trigger modal -->
         var student_id =$(this).attr('data-id');
         $("#sureToDeletestudentBtn").click(function(){						
             $.post("/student/deletestudent", {student_id: student_id}, function (data) {	
-                if(data.status == 200)
-                {
-                    $('#deletestudentModal').modal("hide");
-                    $('#studentListTable').DataTable().ajax.reload();
-                }else{
-                    myCustomAlert(data.text);
-                }							
+                $('#deletestudentModal').modal("hide");
+                    $('.allstudenttable').DataTable().ajax.reload();						
             });
         });
     }); 
