@@ -17,7 +17,9 @@
 
 	</head>
 	<style>
-		
+		.mytextright{
+			text-align: right;
+		}
 	</style>
 	
        <!-- <script>
@@ -43,7 +45,7 @@
 		</div>
 	  </div>
 
-		<div class="container bg-dark" >
+		<div class="container " >
 			<!-- Page Content-->
 			<div class="mt-4 me-4 p-4  ">
 				<style>
@@ -63,26 +65,28 @@
 			
 				<nav class="navbar navbar-expand-sm navbar-light bg-light">
 					<div class="container-fluid text-black">
-					  <a class="navbar-brand" href="/admin/welcome">Home</a>
-					  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-						<span class="navbar-toggler-icon"></span>
-					  </button>
 					  <div class="collapse navbar-collapse" id="mynavbar">
 						<ul class="navbar-nav me-auto">
 						  <li class="nav-item">
-							<a class="nav-link" href="/admin/sixthyear_list">Sixth Year</a>
+							<a class="nav-link welcome" href="/admin/welcome">Home</a>
 						  </li>
 						  <li class="nav-item">
-							<a class="nav-link" href="/admin/fifthyear_list">Fifth Year</a>
+							<a class="nav-link sixthyear_list" href="/admin/sixthyear_list">Sixth Year</a>
 						  </li>
 						  <li class="nav-item">
-							<a class="nav-link" href="/admin/fourthyear_list">Fourth Year</a>
+							<a class="nav-link fifthyear_list" href="/admin/fifthyear_list">Fifth Year</a>
 						  </li>
 						  <li class="nav-item">
-							<a class="nav-link" href="/admin/thirdyear_list">Third Year</a>
+							<a class="nav-link fourthyear_list" href="/admin/fourthyear_list">Fourth Year</a>
 						  </li>
 						  <li class="nav-item">
-							<a class="nav-link" href="/admin/secondyear_list">Second Year</a>
+							<a class="nav-link thirdyear_list" href="/admin/thirdyear_list">Third Year</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link secondyear_list" href="/admin/secondyear_list">Second Year</a>
+						  </li>
+						  <li class="nav-item ">
+							<a type="button" class="btn nav-link" id="add_newstudent">Add New</a>
 						  </li>
 						</ul>
 					  </div>
@@ -125,6 +129,14 @@
 				
 			}); 
 		}
+
+		$(document).ready(()=>{
+			let current = window.location.pathname;
+			let current_array = current.split('/');
+			let current_route = current_array[current_array.length - 1];
+			console.log(current_route)
+			$('.'+ current_route).addClass('active');
+		});
 	</script>
 	
 	</body>

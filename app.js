@@ -47,6 +47,9 @@ app.use(function errorHandler(
   }
   next();
 });
+app.use(function invalidPathHandler(request, response, next){
+    response.redirect('/login')
+});
 server.listen(port, function() {
   console.log('Listening on port ' + port);
 });

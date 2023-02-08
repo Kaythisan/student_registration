@@ -1,6 +1,3 @@
-<div style="text-align: left;">
-    <button type="button" class="btn btn-outline-primary" id="add_newstudent">Add New Student</button>
-</div> 
 
 <!-- Modal -->
 <div class="modal " id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel" aria-hidden="true">
@@ -110,9 +107,11 @@ Button trigger modal -->
                 name : $('#name').val(),
                 roll_no : $('#roll').val(),
                 phonenumber : $('#phonenumber').val(),
-                father : $('#father').val(),
+                father_name: $('#father').val(),
                 address : $('#address').val(),
-                gmail : $('#gmail').val()
+                gmail : $('#gmail').val(),
+                year : $('#year').val(),
+                no : $('#no').val()
             };
             $.post('/student/savestudent',obj,function(resp){
                 if(resp.status == 500){

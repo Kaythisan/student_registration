@@ -178,7 +178,7 @@ exports.GetsixthyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +";" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Sixth Year';" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -288,7 +288,7 @@ exports.GetfifthyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +";" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Fifth Year' ;" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -401,7 +401,7 @@ exports.GetfourthyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +";" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Fourth Year'  ;" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -512,7 +512,7 @@ exports.GetthirdyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +";" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Third Year' ;" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -621,7 +621,7 @@ exports.GetsecondyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +";" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Second Year';" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -680,7 +680,7 @@ exports.SaveStudent = function(data,callback){
 		callback({status:500,text:"mysql getConnection Error",data:err});
 	}else{
 		//console.log(userdata.admin_email);
-		var i = connection.query(sQuery,[data,admin_id], function(err, result){
+		var i = connection.query(sQuery,[data,student_id], function(err, result){
 			
 			if(!err){			
 				   
