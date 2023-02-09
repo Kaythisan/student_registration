@@ -31,7 +31,7 @@ exports.GetAllStudentList = function(reqQuery,callback) {
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE 1=1  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
+            let sWhere = " WHERE 1=1  "; //year = '6th Year' or year='5th Year'  or year='4th Year' or year='3rd Year' or year='2nd Year' or year='1st_1sem Year' or year='1st_2sem Year'
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
                 console.log("here in filter")
@@ -141,9 +141,7 @@ exports.GetsixthyearstudentList = function(reqQuery,callback) {
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='Sixth Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
-            console.log(reqQuery)
-            if(reqQuery.search && reqQuery.search.value){
+            let sWhere = " WHERE year='6th Year'  "; //year = '6th Year' or year='5th Year'  or year='4th Year' or year='3rd Year' or year='2nd Year' or year='1st_1sem Year' or year='1st_2sem Year'
                 console.log("here in filter")
             
                 sWhere += " AND (";
@@ -178,7 +176,7 @@ exports.GetsixthyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Sixth Year';" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='6th Year';" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -251,7 +249,7 @@ exports.GetfifthyearstudentList = function(reqQuery,callback) {
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='Fifth Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
+            let sWhere = " WHERE year='5th Year'  "; //year = '6th Year' or year='5th Year'  or year='4th Year' or year='3rd Year' or year='2nd Year' or year='1st_1sem Year' or year='1st_2sem Year'
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
                 console.log("here in filter")
@@ -288,7 +286,7 @@ exports.GetfifthyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Fifth Year' ;" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='5th Year' ;" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -363,7 +361,7 @@ exports.GetfourthyearstudentList = function(reqQuery,callback) {
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='Fourth Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
+            let sWhere = " WHERE year='4th Year'  "; //year = '6th Year' or year='5th Year'  or year='4th Year' or year='3rd Year' or year='2nd Year' or year='1st_1sem Year' or year='1st_2sem Year'
 
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
@@ -401,7 +399,7 @@ exports.GetfourthyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Fourth Year'  ;" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='4th Year'  ;" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -474,7 +472,7 @@ exports.GetthirdyearstudentList = function(reqQuery,callback) {
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='Third Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
+            let sWhere = " WHERE year='3rd Year'  "; //year = '6th Year' or year='5th Year'  or year='4th Year' or year='3rd Year' or year='2nd Year' or year='1st_1sem Year' or year='1st_2sem Year'
 
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
@@ -512,7 +510,7 @@ exports.GetthirdyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Third Year' ;" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='3rd Year' ;" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -585,7 +583,7 @@ exports.GetsecondyearstudentList = function(reqQuery,callback) {
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='Second Year'  "; //year = 'Sixth Year' or year='Fifth Year' or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
+            let sWhere = " WHERE year='2nd Year'  "; //year = '6th Year' or year='5th Year'  or year='4th Year' or year='3rd Year' or year='2nd Year' or year='1st_1sem Year' or year='1st_2sem Year'
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
                 console.log("here in filter")
@@ -621,7 +619,7 @@ exports.GetsecondyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Second Year';" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='2nd Year';" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -694,7 +692,7 @@ exports.Getfirst_1semyearstudentList = function(reqQuery,callback) {
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='First_1sem Year'  "; //year = 'Sixth Year' or year='Fifth Year' or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
+            let sWhere = " WHERE year='1st_1sem Year'  "; //year = '6th Year' or year='5th Year'  or year='4th Year' or year='3rd Year' or year='2nd Year' or year='1st_1sem Year' or year='1st_2sem Year'
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
                 console.log("here in filter")
@@ -730,7 +728,7 @@ exports.Getfirst_1semyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='First-1sem Year';" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='1st-1sem Year';" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -803,7 +801,7 @@ exports.Getfirst_2semyearstudentList = function(reqQuery,callback) {
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='First_2sem Year'  "; //year = 'Sixth Year' or year='Fifth Year' or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
+            let sWhere = " WHERE year='1st_2sem Year'  "; //year = '6th Year' or year='5th Year'  or year='4th Year' or year='3rd Year' or year='2nd Year' or year='1st_1sem Year' or year='1st_2sem Year'
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
                 console.log("here in filter")
@@ -839,7 +837,7 @@ exports.Getfirst_2semyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='First-2sem Year';" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='1st-2sem Year';" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
