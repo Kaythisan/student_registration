@@ -27,11 +27,11 @@ exports.GetAllStudentList = function(reqQuery,callback) {
                 const nsort = JSON.parse(reqQuery.sort);
                 sOrder += "ORDER BY " + nsort.field + " " + nsort.direction;
             }else{
-                sOrder += "ORDER BY  createddate asc";
+                sOrder += "ORDER BY  Year,No asc";
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE 1=1  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year'
+            let sWhere = " WHERE 1=1  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
                 console.log("here in filter")
@@ -137,11 +137,11 @@ exports.GetsixthyearstudentList = function(reqQuery,callback) {
                 const nsort = JSON.parse(reqQuery.sort);
                 sOrder += "ORDER BY " + nsort.field + " " + nsort.direction;
             }else{
-                sOrder += "ORDER BY  createddate asc";
+                sOrder += "ORDER BY  Year,No asc";
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='Sixth Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year'
+            let sWhere = " WHERE year='Sixth Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
                 console.log("here in filter")
@@ -247,11 +247,11 @@ exports.GetfifthyearstudentList = function(reqQuery,callback) {
                 const nsort = JSON.parse(reqQuery.sort);
                 sOrder += "ORDER BY " + nsort.field + " " + nsort.direction;
             }else{
-                sOrder += "ORDER BY  createddate asc";
+                sOrder += "ORDER BY  Year,No asc";
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='Fifth Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year'
+            let sWhere = " WHERE year='Fifth Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
                 console.log("here in filter")
@@ -359,11 +359,11 @@ exports.GetfourthyearstudentList = function(reqQuery,callback) {
                 const nsort = JSON.parse(reqQuery.sort);
                 sOrder += "ORDER BY " + nsort.field + " " + nsort.direction;
             }else{
-                sOrder += "ORDER BY  createddate asc";
+                sOrder += "ORDER BY  Year,No asc";
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='Fourth Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year'
+            let sWhere = " WHERE year='Fourth Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
 
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
@@ -470,11 +470,11 @@ exports.GetthirdyearstudentList = function(reqQuery,callback) {
                 const nsort = JSON.parse(reqQuery.sort);
                 sOrder += "ORDER BY " + nsort.field + " " + nsort.direction;
             }else{
-                sOrder += "ORDER BY  createddate asc";
+                sOrder += "ORDER BY  Year,No asc";
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='Third Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year'
+            let sWhere = " WHERE year='Third Year'  "; //year = 'Sixth Year' or year='Fifth Year'  or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
 
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
@@ -581,11 +581,11 @@ exports.GetsecondyearstudentList = function(reqQuery,callback) {
                 const nsort = JSON.parse(reqQuery.sort);
                 sOrder += "ORDER BY " + nsort.field + " " + nsort.direction;
             }else{
-                sOrder += "ORDER BY  createddate asc";
+                sOrder += "ORDER BY  Year,No asc";
             }
             // console.log(sOrder)
             // search
-            let sWhere = " WHERE year='Second Year'  "; //year = 'Sixth Year' or year='Fifth Year' or year='Fourth Year' or year='Third Year' or year='Second Year'
+            let sWhere = " WHERE year='Second Year'  "; //year = 'Sixth Year' or year='Fifth Year' or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
             console.log(reqQuery)
             if(reqQuery.search && reqQuery.search.value){
                 console.log("here in filter")
@@ -622,6 +622,224 @@ exports.GetsecondyearstudentList = function(reqQuery,callback) {
                             const rResult = results;
                             console.log(rResult)
                             const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='Second Year';" ;
+                            console.log(totalquery)
+                            connection.query(totalquery,  (queryerr3, result) => {
+                                connection.release();
+                                if (queryerr3) {
+                                    callback(queryerr3,null);
+                                }else {
+                                    console.log(rResult[rResult.length -1])
+                                    const iTotal = result[0].totalrecord;
+                                    const output = {
+                                        recordsFiltered: iTotal,
+                                        recordsTotal: rResult.length > 0 ? rResult[rResult.length -1].n : 0,
+                                        draw: reqQuery.draw,
+                                        data: rResult.map(each =>{
+                                            return {
+                                                "no": each.No,
+                                        
+                                                "name": each.name,
+                                                "roll": each.roll_no,
+                                                "phonenumber": each.phonenumber,
+                                                "father": each.father_name,
+                                                "address": each.address,
+                                                "gmail": each.gmail,
+                                                "year": each.year,
+                                                "action": each.student_id,
+                                            }
+                                        })
+                                    };
+                                    callback(null, output);
+                                }
+                                
+                            });
+                        }
+                    });console.log(i.sql);
+                }
+            });
+        } catch (error) {
+        console.error(error);
+        callback(error,null)
+    }
+}
+
+exports.Getfirst_1semyearstudentList = function(reqQuery,callback) {
+    try {
+            // console.log(reqQuery);
+            // console.log(typeof reqQuery.sort);
+            reqQuery.displaystart =  (Number(reqQuery.page) - 1) * Number(reqQuery.limit) || 0;
+            const aColumns = [
+               "No", "student_id","name","roll_no","phonenumber","address","father_name","gmail","year",
+            ];
+            /* Indexed column (used for fast and accurate table cardinality)*/
+            const sIndexColumn = "student_id";
+
+            /* DB table to use */
+            const sTable = 'student';
+            // Paging
+            let sLimit = " ";
+            if(reqQuery.draw && reqQuery.start){
+
+                sLimit = " LIMIT " + reqQuery.start + ", " + reqQuery.length;
+            }
+            // Ordering
+            // console.log("sorting")
+            // console.log(reqQuery.sort)
+            let sOrder = " ";
+            if(reqQuery.sort && reqQuery.sort !== null && reqQuery.sort !== undefined){
+                const nsort = JSON.parse(reqQuery.sort);
+                sOrder += "ORDER BY " + nsort.field + " " + nsort.direction;
+            }else{
+                sOrder += "ORDER BY  Year,No asc";
+            }
+            // console.log(sOrder)
+            // search
+            let sWhere = " WHERE year='First_1sem Year'  "; //year = 'Sixth Year' or year='Fifth Year' or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
+            console.log(reqQuery)
+            if(reqQuery.search && reqQuery.search.value){
+                console.log("here in filter")
+                sWhere += " AND (";
+                for (var eachcolumn=0; eachcolumn<aColumns.length; eachcolumn++)
+                {
+
+                    if(aColumns[eachcolumn] === 'createddate'){
+                        sWhere += " date(createddate)  = '"+ moment(reqQuery.search.value).format('YYYY-MM-DD') +"' OR ";
+                    }else{
+                        const searchstr = (reqQuery.search.value).replace(/'/g, "\\'");
+                        sWhere += aColumns[eachcolumn]  +" LIKE '%"+ searchstr +"%' OR ";
+                    }
+
+                }
+                sWhere = sWhere.substring(0 , sWhere.length-3 );
+                sWhere += ')';
+            }
+            console.log(sWhere)
+            // rowcount = "(SELECT @rownum := 0) r "
+            const sJoin = "  ";
+            const sQuery = "SELECT  SQL_CALC_FOUND_ROWS @n := @n + 1 n,  "+aColumns.join()+" FROM "+ sTable  + sJoin + " ,(SELECT @n := 0) m "  + sWhere+ sOrder + sLimit;
+            // console.log(sQuery)
+            DB.getConnection((getconError, connection)=>{
+                if(getconError){
+                    console.log(getconError);
+                    callback(getconError,null);
+                }else{
+                    const i= connection.query(sQuery, (queryerr, results) => {
+                        if (queryerr) {
+                            connection.release();
+                            callback(queryerr,null);
+                        }else {
+                            const rResult = results;
+                            console.log(rResult)
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='First-1sem Year';" ;
+                            console.log(totalquery)
+                            connection.query(totalquery,  (queryerr3, result) => {
+                                connection.release();
+                                if (queryerr3) {
+                                    callback(queryerr3,null);
+                                }else {
+                                    console.log(rResult[rResult.length -1])
+                                    const iTotal = result[0].totalrecord;
+                                    const output = {
+                                        recordsFiltered: iTotal,
+                                        recordsTotal: rResult.length > 0 ? rResult[rResult.length -1].n : 0,
+                                        draw: reqQuery.draw,
+                                        data: rResult.map(each =>{
+                                            return {
+                                                "no": each.No,
+                                        
+                                                "name": each.name,
+                                                "roll": each.roll_no,
+                                                "phonenumber": each.phonenumber,
+                                                "father": each.father_name,
+                                                "address": each.address,
+                                                "gmail": each.gmail,
+                                                "year": each.year,
+                                                "action": each.student_id,
+                                            }
+                                        })
+                                    };
+                                    callback(null, output);
+                                }
+                                
+                            });
+                        }
+                    });console.log(i.sql);
+                }
+            });
+        } catch (error) {
+        console.error(error);
+        callback(error,null)
+    }
+}
+
+exports.Getfirst_2semyearstudentList = function(reqQuery,callback) {
+    try {
+            // console.log(reqQuery);
+            // console.log(typeof reqQuery.sort);
+            reqQuery.displaystart =  (Number(reqQuery.page) - 1) * Number(reqQuery.limit) || 0;
+            const aColumns = [
+               "No", "student_id","name","roll_no","phonenumber","address","father_name","gmail","year",
+            ];
+            /* Indexed column (used for fast and accurate table cardinality)*/
+            const sIndexColumn = "student_id";
+
+            /* DB table to use */
+            const sTable = 'student';
+            // Paging
+            let sLimit = " ";
+            if(reqQuery.draw && reqQuery.start){
+
+                sLimit = " LIMIT " + reqQuery.start + ", " + reqQuery.length;
+            }
+            // Ordering
+            // console.log("sorting")
+            // console.log(reqQuery.sort)
+            let sOrder = " ";
+            if(reqQuery.sort && reqQuery.sort !== null && reqQuery.sort !== undefined){
+                const nsort = JSON.parse(reqQuery.sort);
+                sOrder += "ORDER BY " + nsort.field + " " + nsort.direction;
+            }else{
+                sOrder += "ORDER BY  Year,No asc";
+            }
+            // console.log(sOrder)
+            // search
+            let sWhere = " WHERE year='First_2sem Year'  "; //year = 'Sixth Year' or year='Fifth Year' or year='Fourth Year' or year='Third Year' or year='Second Year' or year='First_1sem Year' or year='First_2sem Year'
+            console.log(reqQuery)
+            if(reqQuery.search && reqQuery.search.value){
+                console.log("here in filter")
+                sWhere += " AND (";
+                for (var eachcolumn=0; eachcolumn<aColumns.length; eachcolumn++)
+                {
+
+                    if(aColumns[eachcolumn] === 'createddate'){
+                        sWhere += " date(createddate)  = '"+ moment(reqQuery.search.value).format('YYYY-MM-DD') +"' OR ";
+                    }else{
+                        const searchstr = (reqQuery.search.value).replace(/'/g, "\\'");
+                        sWhere += aColumns[eachcolumn]  +" LIKE '%"+ searchstr +"%' OR ";
+                    }
+
+                }
+                sWhere = sWhere.substring(0 , sWhere.length-3 );
+                sWhere += ')';
+            }
+            console.log(sWhere)
+            // rowcount = "(SELECT @rownum := 0) r "
+            const sJoin = "  ";
+            const sQuery = "SELECT  SQL_CALC_FOUND_ROWS @n := @n + 1 n,  "+aColumns.join()+" FROM "+ sTable  + sJoin + " ,(SELECT @n := 0) m "  + sWhere+ sOrder + sLimit;
+            // console.log(sQuery)
+            DB.getConnection((getconError, connection)=>{
+                if(getconError){
+                    console.log(getconError);
+                    callback(getconError,null);
+                }else{
+                    const i= connection.query(sQuery, (queryerr, results) => {
+                        if (queryerr) {
+                            connection.release();
+                            callback(queryerr,null);
+                        }else {
+                            const rResult = results;
+                            console.log(rResult)
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='First-2sem Year';" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();

@@ -61,6 +61,26 @@ router.get('/getsecondyearstudentlist', function(req, res) {
 	})
 });
 
+router.get('/getfirst_1semyearstudentlist', function(req, res) {
+	StudentModel.Getfirst_1semyearstudentList(req.query,function(error,result){
+		if(error){
+			res.send(error);
+		}else{
+			res.send(result);
+		}
+	})
+});
+
+router.get('/getfirst_2semyearstudentlist', function(req, res) {
+	StudentModel.Getfirst_2semyearstudentList(req.query,function(error,result){
+		if(error){
+			res.send(error);
+		}else{
+			res.send(result);
+		}
+	})
+});
+
 router.post('/savestudent', function(req, res) {
     StudentModel.SaveStudent(req.body,function(err,result){
         if(err){

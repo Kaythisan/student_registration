@@ -103,6 +103,36 @@ router.get('/secondyear_list', function(req, res) {
 		res.redirect('/login');
 	} 
 });
+
+router.get('/first_1semyear_list', function(req, res) {
+    //console.log(req.session);
+	if(req.session.user !== undefined){
+		var settings = {};
+		settings.user = req.session.user;
+		res.render('index', {	
+            bodypage: 'first_1semyearstudent',
+            settings: settings,
+            summarydata: null
+        });
+	}else{
+		res.redirect('/login');
+	} 
+});
+
+router.get('/first_2semyear_list', function(req, res) {
+    //console.log(req.session);
+	if(req.session.user !== undefined){
+		var settings = {};
+		settings.user = req.session.user;
+		res.render('index', {	
+            bodypage: 'first_2semyearstudent',
+            settings: settings,
+            summarydata: null
+        });
+	}else{
+		res.redirect('/login');
+	} 
+});
   
 
 
