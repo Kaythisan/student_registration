@@ -109,14 +109,13 @@ exports.GetAllStudentList = function(reqQuery,callback) {
         callback(error,null)
     }
 }
-
 exports.GetsixthyearstudentList = function(reqQuery,callback) {
     try {
             // console.log(reqQuery);
             // console.log(typeof reqQuery.sort);
             reqQuery.displaystart =  (Number(reqQuery.page) - 1) * Number(reqQuery.limit) || 0;
             const aColumns = [
-               "No", "student_id","name","roll_no","phonenumber","address","father_name","gmail","year",
+               "No", "student_id","name","roll_no","phonenumber","address","father_name","address","gmail","year",
             ];
             /* Indexed column (used for fast and accurate table cardinality)*/
             const sIndexColumn = "student_id";
@@ -142,6 +141,8 @@ exports.GetsixthyearstudentList = function(reqQuery,callback) {
             // console.log(sOrder)
             // search
             let sWhere = " WHERE year='6th Year'  "; //year = '6th Year' or year='5th Year'  or year='4th Year' or year='3rd Year' or year='2nd Year' or year='1st_1sem Year' or year='1st_2sem Year'
+            console.log(reqQuery)
+            if(reqQuery.search && reqQuery.search.value){
                 console.log("here in filter")
             
                 sWhere += " AND (";
@@ -176,7 +177,7 @@ exports.GetsixthyearstudentList = function(reqQuery,callback) {
                         }else {
                             const rResult = results;
                             console.log(rResult)
-                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='6th Year';" ;
+                            const totalquery = "SELECT COUNT("+sIndexColumn+") as totalrecord FROM "+sTable +"  WHERE year='6th Year' ;" ;
                             console.log(totalquery)
                             connection.query(totalquery,  (queryerr3, result) => {
                                 connection.release();
@@ -217,6 +218,8 @@ exports.GetsixthyearstudentList = function(reqQuery,callback) {
         callback(error,null)
     }
 }
+
+
 
 exports.GetfifthyearstudentList = function(reqQuery,callback) {
     try {
@@ -883,10 +886,11 @@ exports.SaveStudent = function(data,callback){
 	
 	var sQuery = '';
 	var student_id = data.student_id;
-	if(data.student_id){
+	delete data.student_id; 
+    if(data.student_id){
 
 		sQuery += " update student set ? where student_id = ?;";
-		delete data.student_id;
+		
 	}else{
 		sQuery += " insert into student set ?;";
 	}
